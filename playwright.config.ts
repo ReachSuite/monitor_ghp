@@ -27,7 +27,7 @@ export default defineConfig({
     trace: "on-first-retry",
     /* No timeout */
     actionTimeout: 0,
-    video: "on",
+    video: "retain-on-failure",
     /* Use a common viewport size for desktop apps (Full HD) */
     viewport: {
       width: 1920,
