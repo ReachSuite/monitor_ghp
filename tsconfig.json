@@ -13,5 +13,6 @@
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": false
   },
-  "compileOnSave": true
+  "compileOnSave": true,
+  "include": ["tests"]
 }

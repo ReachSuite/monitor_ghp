@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "extends": ["plugin:import/typescript", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "import", "unicorn", "unused-imports"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "unicorn/prefer-node-protocol": ["error"],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/naming-convention": "off",
+    "no-unused-vars": "off",
+    "curly": "warn",
+    "eqeqeq": "warn",
+    "no-throw-literal": "warn",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "max-len": [2, 120]
+  },
+  "ignorePatterns": ["**/*.d.ts"],
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  }
+}
