@@ -1,6 +1,6 @@
-import { Page, expect, Response } from "@playwright/test";
+import { Page, expect, Response } from '@playwright/test';
 
-import { Keyboard } from "./types";
+import { Keyboard } from './types';
 
 export const navigateToExperience = async ({
   page,
@@ -11,55 +11,44 @@ export const navigateToExperience = async ({
   experienceId: string;
   url: string | RegExp;
 }): Promise<Response | null> => {
-  const response = await page.goto(
-    `https://dev.rswt.dev/go/exp-${experienceId}`
-  );
+  const response = await page.goto(`/go/exp-${experienceId}`);
   await page.waitForURL(url);
   return response;
 };
 
 export const expectHeaders = (response: Response | null) => {
   const headers = response?.headers();
-  expect(headers).toHaveProperty("reachsuite-status");
-  expect(headers).toHaveProperty("reachsuite-requestid");
+  expect(headers).toHaveProperty('reachsuite-status');
+  expect(headers).toHaveProperty('reachsuite-requestid');
 };
 
 export const expectHeading = async (page: Page, text: string) => {
-  return expect(page.getByRole("heading")).toHaveText(text);
+  return expect(page.getByRole('heading')).toHaveText(text);
 };
 
 export const disposeDialog = async (page: Page) => {
-  await page.waitForSelector(".RS-MuiDialog-container");
-  return page.locator(".RS-MuiDialog-container").click();
+  await page.waitForSelector('.RS-MuiDialog-container');
+  return page.locator('.RS-MuiDialog-container').click();
 };
 
-export const clickButton = async (
-  page: Page,
-  name: string,
-  timeout: number = 1000
-) => {
-  const button = page.getByRole("button", {
+export const clickButton = async (page: Page, name: string, timeout: number = 1000) => {
+  const button = page.getByRole('button', {
     name,
   });
   await page.waitForTimeout(timeout);
   return button.click();
 };
 
-export const expectStepDialog = async (
-  page: Page,
-  text: string,
-  label = "upload picture"
-) => {
-  await expect(page.getByText(text)).toBeVisible();
+export const expectStepDialog = async (page: Page, text: string | RegExp, label = 'upload picture') => {
+  await expect(
+    page.getByText(text, {
+      exact: false,
+    })
+  ).toBeVisible();
   return page.getByLabel(label).click();
 };
 
-export const expectDialog = async (
-  page: Page,
-  text: string,
-  useDispose = false,
-  timeout: number = 1000
-) => {
+export const expectDialog = async (page: Page, text: string | RegExp, useDispose = false, timeout: number = 1000) => {
   await expect(page.getByText(text)).toBeVisible();
   await page.waitForTimeout(timeout);
   if (useDispose) {
@@ -73,7 +62,7 @@ export const expectText = async (page: Page, text: string) => {
 };
 
 export const expectModalDialog = async (page: Page) => {
-  return expect(page.getByRole("dialog").locator("div").first()).toBeVisible();
+  return expect(page.getByRole('dialog').locator('div').first()).toBeVisible();
 };
 
 export const expectUrl = async (page: Page, url: string) => {
