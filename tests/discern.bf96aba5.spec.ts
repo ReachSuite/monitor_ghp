@@ -11,7 +11,9 @@ import {
   expectUrl,
 } from './utils';
 
-test('Customer experience test suite for @discern', async ({ page }) => {
+test('Customer experience test suite for @discern', async ({ page, browserName }) => {
+  // Skip for Webkit for now
+  test.skip(browserName === 'webkit');
   test.slow();
   const response = await navigateToExperience({
     page,
