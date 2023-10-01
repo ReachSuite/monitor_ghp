@@ -9,7 +9,6 @@ import {
   expectText,
   expectModalDialog,
   expectUrl,
-  BackdropClosable,
 } from './utils';
 
 test('Customer experience test suite for @revsure', async ({ page }) => {
@@ -37,7 +36,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     stage to stage conversions and velocities along with leakage from every stage.
     \nExplore the view and click into the 'Pipeline' drilldown from the below table
     (it's under here and glowing yellow)`,
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page.locator('#funnel-table').getByText('Pipeline', { exact: true }).click();
@@ -46,7 +44,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     page,
     text: `Here you see the details of the opportunities in the pipeline stage.
     \nHead over to 'Breakdown' to the right when you are ready.`,
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page
@@ -60,7 +57,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     text: `In breakdown, you get a better understanding of how much early stage vs mid stage vs late stage
       pipeline you have - in terms of both volume and $value.
       \nHead over to the \'Composition\' tab when you are ready.`,
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page
@@ -73,8 +69,7 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     page,
     text: `In the composition tab, you see what makes up your open pipeline and what each segment\'s
     projected win rate is.
-      \nHead over to \'Recommendations\' when you are ready.`,
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
+    \nHead over to \'Recommendations\' when you are ready.`,
   });
 
   await page
@@ -86,13 +81,11 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
   await expectDialog({
     page,
     text: 'Here you get opportunity recommendations with the highest propensities to convert into bookings.',
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await expectDialog({
     page,
     text: "Let's exit out of the panel and head to 'Addition' view to continue with the demo.",
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page.getByLabel('close', { exact: true }).locator('svg').click();
@@ -100,7 +93,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
   await expectDialog({
     page,
     text: 'Head over here to the Addition tab',
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page
@@ -131,7 +123,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     page,
     text: `Similarly, in this view you see how lead and pipeline conversion efforts are trending over time.
       \nFinally, head over to the leakage tab to the right`,
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await page
@@ -143,7 +134,6 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
   await expectDialog({
     page,
     text: 'And in this view you see how the leakage from every stage is trending over time',
-    closeMethod: new BackdropClosable('.RS-MuiBackdrop-root'),
   });
 
   await expectModalDialog(page);
