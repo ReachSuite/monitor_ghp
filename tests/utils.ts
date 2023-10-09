@@ -30,7 +30,8 @@ export const expectHeading = async (page: Page, text: string) => {
 export const disposeDialog = async (page: Page, selector?: string | undefined) => {
   const containerSelector = selector || '.RS-MuiBackdrop-root';
   await page.waitForSelector(containerSelector);
-  return page.locator(containerSelector).click();
+  // Don't click directly in the center of the page; if it overlaps with the popup, things are inconsistent.
+  return page.locator(containerSelector).click({ position: { x: 5, y: 5 } });
 };
 
 export const clickButton = async (page: Page, name: string, timeout: number = 1000) => {

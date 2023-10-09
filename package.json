@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "format": "pnpm exec prettier . --write",
-    "prepare": "husky install",
-    "lint": "eslint \"**/*.ts\""
+    "prepare": "husky install && pnpm exec playwright install",
+    "lint": "eslint \"**/*.ts\"",
+    "test:local": "PLAYWRIGHT_BASE_URL=https://rs.test pnpm exec playwright test --project=chromium"
   },
   "keywords": [],
   "author": "",

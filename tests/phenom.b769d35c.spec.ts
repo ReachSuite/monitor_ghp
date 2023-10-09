@@ -48,6 +48,7 @@ test.describe('Customer experience test suite for @phenom', () => {
   };
 
   test('Selected option: Customer experience Through Text Messages', async ({ page }) => {
+    test.skip(!!process.env.PLAYWRIGHT_BASE_URL);
     await clickButton(page, 'Through Text Messages');
     await page.waitForTimeout(5000);
     await expectDialog({
@@ -138,6 +139,7 @@ test.describe('Customer experience test suite for @phenom', () => {
   });
 
   test('Selected option: Customer experience Through Our Website / App', async ({ page }) => {
+    test.skip(!!process.env.PLAYWRIGHT_BASE_URL);
     await clickButton(page, 'Through Our Website / App');
     await page.waitForTimeout(5000);
     await expectDialog({
