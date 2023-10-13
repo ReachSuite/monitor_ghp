@@ -7,6 +7,7 @@
     "format": "pnpm exec prettier . --write",
     "prepare": "husky install && pnpm exec playwright install",
     "lint": "eslint \"**/*.ts\"",
+    "test:dev": "pnpm exec playwright test --project=chromium",
     "test:local": "PLAYWRIGHT_BASE_URL=https://rs.test pnpm exec playwright test --project=chromium"
   },
   "keywords": [],
