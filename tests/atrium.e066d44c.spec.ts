@@ -27,6 +27,8 @@ test('Customer experience test suite for @atrium', async ({ page }) => {
     "It's the middle of the quarter and you're worried your team isn't pacing toward their bookings goal ..."
   );
 
+  await expect(page).toHaveScreenshot();
+
   await clickButton(page, "UhOh .. let's see how Atrium helps!");
 
   await expectDialog({

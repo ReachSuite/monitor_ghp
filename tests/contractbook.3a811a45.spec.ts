@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import {
   navigateToExperience,
@@ -25,6 +25,8 @@ test('Customer experience test suite for @contractbook', async ({ page }) => {
     `😩 Wasting hours on manual contract input? Unlock bandwidth
   with Contractbook\'s Smart Templates`
   );
+
+  await expect(page).toHaveScreenshot();
 
   await clickButton(page, "Let's See It");
 

@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import {
   navigateToExperience,
@@ -24,6 +24,7 @@ test('Customer experience test suite for @mixmax', async ({ page }) => {
     `Here is how we will help your team automate their outreach
   to prospects and customers to build more pipeline.`
   );
+  await expect(page).toHaveScreenshot();
   await clickButton(page, "Let's See!");
 
   await expectDialog({

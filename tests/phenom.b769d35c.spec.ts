@@ -49,6 +49,8 @@ test.describe('Customer experience test suite for @phenom', () => {
 
   test('Selected option: Customer experience Through Text Messages', async ({ page }) => {
     test.skip(!!process.env.PLAYWRIGHT_BASE_URL);
+    // We only need 1 screenshot for the first page for now.
+    await expect(page).toHaveScreenshot();
     await clickButton(page, 'Through Text Messages');
     await page.waitForTimeout(5000);
     await expectDialog({
@@ -58,7 +60,6 @@ test.describe('Customer experience test suite for @phenom', () => {
       type: DialogType.Tooltip,
       closeMethod: new SelfClosable(),
     });
-
     await expectDialog({
       page,
       text: `With just a couple of taps, they can narrow down their job search to identify relevant

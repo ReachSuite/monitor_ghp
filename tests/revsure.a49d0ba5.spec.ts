@@ -28,6 +28,7 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     \nYou will learn which stages in the funnel have a slowdown or leakage, the segments which are
     \nconverting faster, how the lead and pipeline generation efforts are trending and more.`
   );
+  await expect(page).toHaveScreenshot();
   await clickButton(page, "Let's Go!");
 
   await expectDialog({

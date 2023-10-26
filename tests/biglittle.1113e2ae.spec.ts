@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import {
   navigateToExperience,
@@ -21,6 +21,7 @@ test('Customer experience test suite for @biglittle', async ({ page }) => {
   });
   expectHeaders(response);
   await expectHeading(page, "Welcome to BigLittle's Revenup!👋");
+  await expect(page).toHaveScreenshot();
   await clickButton(page, 'Begin');
   await expectStepDialog(page, 'We start our journey at the Revenue Engine.');
   await expectStepDialog(

@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import {
   navigateToExperience,
@@ -30,6 +30,7 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
     `Today, we're going to take you through how to utilize Discern's
     \nRetrospectives to prepare for a quarterly board meeting.`
   );
+  await expect(page).toHaveScreenshot();
   await clickButton(page, "Let's Go!");
   await expectDialog({
     page,

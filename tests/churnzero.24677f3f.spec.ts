@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 import {
   navigateToExperience,
@@ -33,6 +33,8 @@ test('Customer experience test suite for @churnzero', async ({ page }) => {
     `Before we let you loose to explore, we'll give you a quick tour of the top
   Renewal Hub features.`
   );
+
+  await expect(page).toHaveScreenshot();
 
   await clickButton(page, 'Get Started');
 
