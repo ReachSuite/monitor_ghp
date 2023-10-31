@@ -1,0 +1,15 @@
+{
+  "name": "@reachsuite/chromium-layer",
+  "version": "1.0.0",
+  "description": "Serverless chromium binary and playwright testing core utilities.",
+  "private": true,
+  "author": "Ruben Restrepo",
+  "license": "ISC",
+  "engines": {
+    "node": "=18.12.1"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^118.0.0",
+    "playwright-core": "^1.39.0"
+  }
+}

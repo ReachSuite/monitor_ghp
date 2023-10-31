@@ -1,0 +1,23 @@
+{
+  "name": "@reachsuite/test-suite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "=18.12.1",
+    "pnpm": "=7.26.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.38.0"
+  }
+}
