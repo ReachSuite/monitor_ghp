@@ -12,7 +12,8 @@
     "monitoring:install:lambda": "cd infrastructure/lambda && pnpm i && pnpm run build && pnpm pack && tar -xf reachsuite-lambda-test-suite-1.0.0.tgz && rm reachsuite-lambda-test-suite-1.0.0.tgz",
     "monitoring:deploy:dev": "run-p monitoring:install:* && cd infrastructure && pulumi up --stack dev",
     "monitoring:destroy:dev": "cd infrastructure && pulumi destroy --stack dev",
-    "monitoring:prepare": "run-p monitoring:install:*"
+    "monitoring:prepare": "run-p monitoring:install:*",
+    "postinstall": "pnpm recursive run build"
   },
   "keywords": [],
   "author": "Ruben Restrepo <contact@bencho.dev>",
