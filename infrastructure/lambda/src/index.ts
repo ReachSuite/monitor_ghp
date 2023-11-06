@@ -121,8 +121,8 @@ exports.handler = async (event: APIGatewayProxyEvent) => {
   } catch (e) {
     await sns
       .publish({
-        Message: `\u2614 Test suite failed for ${suite.test}, details: ${(e as any).message}`,
-        Subject: `Test suite failed for ${suite.test}`,
+        Message: `Test suite failed for ${suite.test}, details: ${(e as any).message}`,
+        Subject: `\u2614 Test suite failed for ${suite.test}`,
         TopicArn: snsTopicArn,
       })
       .promise();

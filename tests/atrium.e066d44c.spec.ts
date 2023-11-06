@@ -4,7 +4,7 @@ import { atrium } from '@reachsuite/test-suite';
 
 test('Customer experience test suite for @atrium', async ({ page }) => {
   test.slow();
-  return atrium({
+  return atrium.e2e({
     page,
   });
 });
