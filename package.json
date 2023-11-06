@@ -13,7 +13,8 @@
     "monitoring:deploy:dev": "run-p monitoring:install:* && cd infrastructure && pulumi up --stack dev",
     "monitoring:destroy:dev": "cd infrastructure && pulumi destroy --stack dev",
     "monitoring:prepare": "run-p monitoring:install:*",
-    "postinstall": "pnpm recursive run build"
+    "postinstall": "pnpm build",
+    "build": "pnpm recursive run build"
   },
   "keywords": [],
   "author": "Ruben Restrepo <contact@bencho.dev>",

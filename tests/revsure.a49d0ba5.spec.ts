@@ -26,7 +26,7 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
     `In this demo, you will see how RevSure connects the marketing funnel and sales pipeline for end-to-end funnel
     visibility and intelligence. 
     \nYou will learn which stages in the funnel have a slowdown or leakage, the segments which are
-    \nconverting faster, how the lead and pipeline generation efforts are trending and more.`
+    \nconverting faster, how the lead and pipeline generation efforts are trending and more.`,
   );
   await clickButton(page, "Let's Go!");
 
@@ -103,13 +103,13 @@ test('Customer experience test suite for @revsure', async ({ page }) => {
 
   await expect(
     page.getByText(`Here you see how your lead and pipeline generation efforts across the funnel are trending over time.
-  \nHead over to \'Progression\' when you are ready.`)
+  \nHead over to \'Progression\' when you are ready.`),
   ).toBeVisible();
 
   await page
     .getByText(
       `Here you see how your lead and pipeline generation efforts across the funnel are trending over time.
-  \nHead over to \'Progression\' when you are ready.`
+  \nHead over to \'Progression\' when you are ready.`,
     )
     .click();
 

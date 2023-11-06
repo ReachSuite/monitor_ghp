@@ -13,7 +13,7 @@ import {
 } from './utils';
 import { DialogType } from './types';
 
-export default async function suite({ page }: { page: Page }) {
+export default async function e2e({ page }: { page: Page }) {
   const response = await navigateToExperience({
     page,
     experienceId: 'e066d44c',

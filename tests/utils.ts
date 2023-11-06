@@ -48,7 +48,7 @@ export const expectStepDialog = async (page: Page, text: string | RegExp, label 
   await expect(
     page.getByText(text, {
       exact: false,
-    })
+    }),
   ).toBeVisible();
   return page.getByLabel(label).click();
 };

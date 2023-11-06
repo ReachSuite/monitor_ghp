@@ -7,6 +7,7 @@ import {
   LAMBDA_MEMORY_SIZE,
   LAMBDA_EXECUTION_TIME_OUT,
   LAMBDA_TEST_SUITE_HANDLER_NAME,
+  LAMBDA_TEST_SUITE_BASE_URL,
   LAMBDA_RUNTIME,
   LAMBDA_FUNCTION_NAME,
   LAMBDA_CHROME_LAMBDA_LAYER_NAME,
@@ -43,7 +44,7 @@ export function createTestsLambda({
     layers: layers,
     environment: {
       variables: {
-        baseUrl: 'https://dev.rswt.dev',
+        baseUrl: LAMBDA_TEST_SUITE_BASE_URL,
       },
     },
   });

@@ -28,7 +28,7 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
   await expectText(
     page,
     `Today, we're going to take you through how to utilize Discern's
-    \nRetrospectives to prepare for a quarterly board meeting.`
+    \nRetrospectives to prepare for a quarterly board meeting.`,
   );
   await clickButton(page, "Let's Go!");
   await expectDialog({
@@ -39,7 +39,7 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
   await page.getByText('Q2-2023 Summary').click();
   await expectStepDialog(
     page,
-    "Here you'll see performance data and trends for a specific group of metrics you present to your board."
+    "Here you'll see performance data and trends for a specific group of metrics you present to your board.",
   );
   await expectDialog({
     page,
@@ -81,7 +81,7 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
     .getByLabel(
       `Bookings is a forward-looking metric that refers to the value of contracts signed with customers.
       \nIn a nutshell, bookings represent your customers' commitment to pay your business for your services`,
-      { exact: true }
+      { exact: true },
     )
     .getByText('Bookings - Total')
     .click();
@@ -110,7 +110,7 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
   await page.waitForTimeout(6000);
   await expectHeading(
     page,
-    'Ready to get to the "so what" of your performance faster when prepping for board meetings?'
+    'Ready to get to the "so what" of your performance faster when prepping for board meetings?',
   );
   await clickButton(page, "Let's Talk");
   await expectUrl(
@@ -120,6 +120,6 @@ test('Customer experience test suite for @discern', async ({ page, browserName }
       'utm_source=reachsuite',
       'utm_medium=tutorial',
       'utm_term=kpi',
-    ])
+    ]),
   );
 });

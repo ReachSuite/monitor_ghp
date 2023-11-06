@@ -8,5 +8,6 @@ export const LAMBDA_POLICY_ATTACHMENT_NAME = 'reachsuite-tests-monitor-policy-at
 export const LAMBDA_MEMORY_SIZE = 1600;
 export const LAMBDA_EXECUTION_TIME_OUT = 600;
 export const LAMBDA_TEST_SUITE_HANDLER_NAME = 'index.handler';
+export const LAMBDA_TEST_SUITE_BASE_URL = 'https://dev.rswt.dev';
 export const LAMBDA_RUNTIME = 'nodejs18.x';
 export const LAMBDA_FUNCTION_NAME = 'reachsuite-playwright-tests';

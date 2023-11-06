@@ -1,4 +1,8 @@
+import { readFileSync } from 'node:fs';
+
 import { Page, expect, Response, Locator } from '@playwright/test';
+import pixelmatch from 'pixelmatch';
+import pngjs from 'pngjs';
 
 import { DialogOptions, DialogType, Keyboard } from './types';
 import { DisposableElement } from './disposableElement';
@@ -123,3 +127,35 @@ export class SelfClosable implements DisposableElement<void | Error> {
 export const buildUrl = (basePath: string, params: string[]) => {
   return `${basePath}/?${params.join('&')}`;
 };
+
+export function compareSnapshots({
+  goldenFile,
+  currentFile,
+  threshold,
+}: {
+  goldenFile: string;
+  currentFile: string;
+  threshold: number | undefined;
+}) {
+  const goldenImage = pngjs.PNG.sync.read(readFileSync(goldenFile));
+  const currentImage = pngjs.PNG.sync.read(readFileSync(currentFile));
+  if (goldenImage.width !== currentImage.width || goldenImage.height !== currentImage.height) {
+    throw new Error('Images must have the same dimensions');
+  }
+  const diff = new pngjs.PNG({
+    width: goldenImage.width,
+    height: goldenImage.height,
+  });
+
+  // Compare the images using pixelmatch
+  const mismatchedPixels = pixelmatch(
+    goldenImage.data,
+    currentImage.data,
+    diff.data,
+    goldenImage.width,
+    goldenImage.height,
+    { threshold },
+  );
+
+  return mismatchedPixels;
+}

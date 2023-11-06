@@ -23,7 +23,7 @@ test('Customer experience test suite for @contractbook', async ({ page }) => {
   await expectHeading(
     page,
     `😩 Wasting hours on manual contract input? Unlock bandwidth
-  with Contractbook\'s Smart Templates`
+  with Contractbook\'s Smart Templates`,
   );
 
   await clickButton(page, "Let's See It");

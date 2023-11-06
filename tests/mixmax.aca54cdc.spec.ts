@@ -22,7 +22,7 @@ test('Customer experience test suite for @mixmax', async ({ page }) => {
   await expectHeading(
     page,
     `Here is how we will help your team automate their outreach
-  to prospects and customers to build more pipeline.`
+  to prospects and customers to build more pipeline.`,
   );
   await clickButton(page, "Let's See!");
 

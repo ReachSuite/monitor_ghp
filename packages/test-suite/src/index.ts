@@ -1,5 +1,6 @@
-import suite from './atrium';
+import atrium from './atrium';
+import biglittle from './biglittle';
 
 export { type Page, type BrowserContext } from '@playwright/test';
 
-export { suite };
+export { atrium, biglittle };

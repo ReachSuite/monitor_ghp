@@ -107,7 +107,20 @@ importers:
         version: 5.2.2
 
   packages/test-suite:
+    dependencies:
+      pixelmatch:
+        specifier: ^5.3.0
+        version: 5.3.0
+      pngjs:
+        specifier: ^7.0.0
+        version: 7.0.0
     devDependencies:
+      '@types/pixelmatch':
+        specifier: ^5.2.5
+        version: 5.2.5
+      '@types/pngjs':
+        specifier: ^6.0.3
+        version: 6.0.3
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -579,6 +592,13 @@ packages:
   /@types/pixelmatch@5.2.5:
     resolution:
       { integrity: sha512-di/HknmWA+KNjlLczJiLft9g1mHJZl5qGAXtDct8KsJg8KPrXKJa8Avumj53fgdJOBbfHABYhp3EjyitmKPdBg== }
+    dependencies:
+      '@types/node': 20.6.2
+    dev: true
+
+  /@types/pngjs@6.0.3:
+    resolution:
+      { integrity: sha512-F/WaGVKEZ1XYFlEtsWtqWm92vRfQdOqSSTBPj07BRDKnDtRhCw50DpwEQtrrDwEZUoAZAzv2FaalZiNV/54BoQ== }
     dependencies:
       '@types/node': 20.6.2
     dev: true
