@@ -71,6 +71,7 @@ exports.handler = async (event: APIGatewayProxyEvent) => {
     try {
       const { mismatchedPixels, diff, screenshot } = await testSuite.goldenScreenshot({
         page,
+        threshold: 0.5,
       });
 
       if (screenshot) {

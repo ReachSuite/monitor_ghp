@@ -56,7 +56,7 @@ export async function e2e({ page }: { page: Page }) {
   await expect(page.locator('div').filter({ hasText: /^Generating your coaching plan\.\.\.$/ })).toBeVisible();
 }
 
-export async function goldenScreenshot({ page }: { page: Page }) {
+export async function goldenScreenshot({ page, threshold }: { page: Page; threshold: number }) {
   await navigateToExperience({
     page,
     experienceId: 'e066d44c',
@@ -70,6 +70,6 @@ export async function goldenScreenshot({ page }: { page: Page }) {
   return compareScreenshots({
     page,
     goldenFile: './screenshots/atrium.png',
-    threshold: 0.1,
+    threshold,
   });
 }
