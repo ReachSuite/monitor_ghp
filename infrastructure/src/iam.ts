@@ -15,7 +15,7 @@ export function defineLambdaPolicies(): aws.iam.Role {
           Effect: 'Allow',
           Sid: '',
           Principal: {
-            Service: 'lambda.amazonaws.com',
+            Service: ['lambda.amazonaws.com', 'scheduler.amazonaws.com'],
           },
         },
       ],
@@ -32,6 +32,11 @@ export function defineLambdaPolicies(): aws.iam.Role {
       Statement: [
         {
           Action: ['lambda:InvokeFunction'],
+          Effect: 'Allow',
+          Resource: '*',
+        },
+        {
+          Action: ['sns:Publish'],
           Effect: 'Allow',
           Resource: '*',
         },

@@ -9,10 +9,9 @@
     "test:dev": "pnpm exec playwright test --project=chromium",
     "test:local": "PLAYWRIGHT_BASE_URL=https://rs.test pnpm exec playwright test --project=chromium",
     "monitoring:install:layers": "cd infrastructure/layers/chrome/nodejs && npm ci",
-    "monitoring:install:lambda": "cd infrastructure/lambda && pnpm i && pnpm run build && pnpm pack && tar -xf reachsuite-lambda-test-suite-1.0.0.tgz && rm reachsuite-lambda-test-suite-1.0.0.tgz",
+    "monitoring:install:lambda": "sh install-lambda.sh",
     "monitoring:deploy:dev": "run-p monitoring:install:* && cd infrastructure && pulumi up --stack dev",
     "monitoring:destroy:dev": "cd infrastructure && pulumi destroy --stack dev",
-    "monitoring:prepare": "run-p monitoring:install:*",
     "postinstall": "pnpm build",
     "build": "pnpm recursive run build"
   },

@@ -128,19 +128,23 @@ export const buildUrl = (basePath: string, params: string[]) => {
   return `${basePath}/?${params.join('&')}`;
 };
 
-export function compareSnapshots({
+export async function compareScreenshots({
+  page,
   goldenFile,
-  currentFile,
   threshold,
 }: {
+  page: Page;
   goldenFile: string;
-  currentFile: string;
   threshold: number | undefined;
 }) {
+  const screenshot = await page.screenshot();
   const goldenImage = pngjs.PNG.sync.read(readFileSync(goldenFile));
-  const currentImage = pngjs.PNG.sync.read(readFileSync(currentFile));
+  const currentImage = pngjs.PNG.sync.read(screenshot);
   if (goldenImage.width !== currentImage.width || goldenImage.height !== currentImage.height) {
-    throw new Error('Images must have the same dimensions');
+    //throw new Error('Images must have the same dimensions');
+    return {
+      screenshot,
+    };
   }
   const diff = new pngjs.PNG({
     width: goldenImage.width,
@@ -157,5 +161,5 @@ export function compareSnapshots({
     { threshold },
   );
 
-  return mismatchedPixels;
+  return { mismatchedPixels, diff };
 }

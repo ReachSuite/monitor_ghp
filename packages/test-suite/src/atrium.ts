@@ -10,10 +10,11 @@ import {
   SelfClosable,
   expectStepDialog,
   expectText,
+  compareScreenshots,
 } from './utils';
 import { DialogType } from './types';
 
-export default async function e2e({ page }: { page: Page }) {
+export async function e2e({ page }: { page: Page }) {
   const response = await navigateToExperience({
     page,
     experienceId: 'e066d44c',
@@ -53,4 +54,22 @@ export default async function e2e({ page }: { page: Page }) {
   await page.locator('.anomaly-action > .sales-coach-button').first().click();
   await expectText(page, 'High Priority Insights');
   await expect(page.locator('div').filter({ hasText: /^Generating your coaching plan\.\.\.$/ })).toBeVisible();
+}
+
+export async function goldenScreenshot({ page }: { page: Page }) {
+  await navigateToExperience({
+    page,
+    experienceId: 'e066d44c',
+    url: '**/app',
+  });
+  await expectModalDialog(page);
+  await expectHeading(
+    page,
+    "It's the middle of the quarter and you're worried your team isn't pacing toward their bookings goal ...",
+  );
+  return compareScreenshots({
+    page,
+    goldenFile: './screenshots/atrium.png',
+    threshold: 0.1,
+  });
 }

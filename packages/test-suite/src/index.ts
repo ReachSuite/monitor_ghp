@@ -1,5 +1,5 @@
-import atrium from './atrium';
-import biglittle from './biglittle';
+import * as atrium from './atrium';
+import * as biglittle from './biglittle';
 
 export { type Page, type BrowserContext } from '@playwright/test';
 

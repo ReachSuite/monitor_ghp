@@ -11,9 +11,10 @@ import {
   expectModalDialog,
   expectUrl,
   SelfClosable,
+  compareScreenshots,
 } from './utils';
 
-export default async function biglittle({ page }: { page: Page }) {
+export async function e2e({ page }: { page: Page }) {
   const response = await navigateToExperience({
     page,
     experienceId: '1113e2ae',
@@ -64,4 +65,13 @@ export default async function biglittle({ page }: { page: Page }) {
   await expectModalDialog(page);
   await clickButton(page, 'Book Now!');
   await expectUrl(page, 'https://meetings-eu1.hubspot.com/ashok1');
+}
+
+export async function goldenScreenshot({ page }: { page: Page }) {
+  const mismatchedPixels = await compareScreenshots({
+    page,
+    goldenFile: './screenshots/biglittle',
+    threshold: 0.1,
+  });
+  return mismatchedPixels;
 }

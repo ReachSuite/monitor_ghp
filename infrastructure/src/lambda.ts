@@ -30,11 +30,17 @@ export function createChromeLambdaLayer(
 export function createTestsLambda({
   role,
   layers,
+  snsTopicArn,
+  snsTopicScreenshotArn,
+  s3BucketName,
 }: {
   role: aws.iam.Role;
   layers: pulumi.Input<pulumi.Input<string>[]>;
+  snsTopicArn: pulumi.Input<string>;
+  snsTopicScreenshotArn: pulumi.Input<string>;
+  s3BucketName: pulumi.Input<string>;
 }) {
-  new aws.lambda.Function(LAMBDA_FUNCTION_NAME, {
+  return new aws.lambda.Function(LAMBDA_FUNCTION_NAME, {
     code: new pulumi.asset.FileArchive('./lambda/package'),
     role: role.arn,
     memorySize: LAMBDA_MEMORY_SIZE,
@@ -45,6 +51,9 @@ export function createTestsLambda({
     environment: {
       variables: {
         baseUrl: LAMBDA_TEST_SUITE_BASE_URL,
+        snsTopic: snsTopicArn,
+        snsTopicScreenshot: snsTopicScreenshotArn,
+        s3BucketName: s3BucketName,
       },
     },
   });
