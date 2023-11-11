@@ -4,7 +4,7 @@ import { Page, expect, Response, Locator } from '@playwright/test';
 import pixelmatch from 'pixelmatch';
 import pngjs from 'pngjs';
 
-import { DialogOptions, DialogType, Keyboard } from './types';
+import { DialogOptions, DialogType, Keyboard, OnScreenshot } from './types';
 import { DisposableElement } from './disposableElement';
 
 export const navigateToExperience = async ({
@@ -161,5 +161,15 @@ export async function compareScreenshots({
     { threshold },
   );
 
-  return { mismatchedPixels, diff };
+  return { mismatchedPixels, diff, screenshot };
+}
+
+export async function toHaveScreenshot({ page, onScreenshot }: { page: Page; onScreenshot?: OnScreenshot }) {
+  if (process.env.EXECUTION_CONTEXT === 'lambda') {
+    return onScreenshot!(await (async () => page.screenshot())());
+  } else {
+    return expect(page).toHaveScreenshot({
+      threshold: 0.3,
+    });
+  }
 }

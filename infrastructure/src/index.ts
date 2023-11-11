@@ -35,7 +35,7 @@ const topic = createSnsTopicForEmail({
 const screenshotTopic = createSnsTopicForEmail({
   topicName: `${SNS_TOPIC_NAME}-screenshot`,
   displayName: `${SNS_TOPIC_DISPLAY_NAME} Screenshots`,
-  subscriptions: `${SNS_TOPIC_EMAIL_SUBSCRIPTIONS}`,
+  subscriptions: SNS_TOPIC_EMAIL_SUBSCRIPTIONS,
 });
 
 /**

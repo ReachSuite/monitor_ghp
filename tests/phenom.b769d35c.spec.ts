@@ -17,7 +17,7 @@ test.describe('Customer experience test suite for @phenom', () => {
   test.beforeEach(async ({ page }) => {
     const response = await navigateToExperience({
       page,
-      experienceId: 'b769d35c',
+      experienceId: '6672c380',
       url: '**/request-high-volume-hiring-demo',
     });
     expectHeaders(response);

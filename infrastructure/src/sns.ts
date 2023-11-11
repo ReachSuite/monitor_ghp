@@ -18,6 +18,7 @@ export function createSnsTopicForEmail({
   }
 
   subscriptions.split(';').forEach((subscription: string) => {
+    console.log(`Adding subscription ${subscription} to SNS Topic ${topicName}`);
     new aws.sns.TopicSubscription(`${topicName}:${subscription}`, {
       protocol: 'email',
       topic: snsTopic.arn,

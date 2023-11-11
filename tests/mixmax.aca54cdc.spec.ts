@@ -14,7 +14,7 @@ import { DialogType } from './types';
 test('Customer experience test suite for @mixmax', async ({ page }) => {
   const response = await navigateToExperience({
     page,
-    experienceId: 'aca54cdc',
+    experienceId: 'cd2f7d95',
     url: '**/dashboard/sequences/v2/64ea175d0a52572c546d8875/stages',
   });
   expectHeaders(response);

@@ -19,3 +19,7 @@ export interface DialogOptions<T> {
   type?: DialogType;
   locator?: string;
 }
+
+export interface OnScreenshot {
+  (screenshot: Buffer): void;
+}

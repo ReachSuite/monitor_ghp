@@ -14,7 +14,7 @@ import {
 test('Customer experience test suite for @churnzero', async ({ page }) => {
   const response = await navigateToExperience({
     page,
-    experienceId: '24677f3f',
+    experienceId: '40cf8e63',
     url: '**/#/app/renewalReports/7/report',
   });
   expectHeaders(response);

@@ -20,7 +20,8 @@ export function createTestsMonitorBucket(role: aws.iam.Role): aws.s3.Bucket {
       "Statement": [
           {
               "Action": [
-                  "s3:PutObject"
+                  "s3:PutObject",
+                  "s3:HeadObject"
               ],
               "Effect": "Allow",
               "Resource": "${bucket.arn}/*"
