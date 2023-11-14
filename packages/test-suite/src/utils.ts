@@ -4,7 +4,7 @@ import { Page, expect, Response, Locator } from '@playwright/test';
 import pixelmatch from 'pixelmatch';
 import pngjs from 'pngjs';
 
-import { DialogOptions, DialogType, Keyboard, OnScreenshot } from './types';
+import { CompareScreenshotResult, DialogOptions, DialogType, Keyboard, OnScreenshot } from './types';
 import { DisposableElement } from './disposableElement';
 
 export const navigateToExperience = async ({
@@ -136,15 +136,12 @@ export async function compareScreenshots({
   page: Page;
   goldenFile: string;
   threshold: number | undefined;
-}) {
+}): Promise<CompareScreenshotResult> {
   const screenshot = await page.screenshot();
   const goldenImage = pngjs.PNG.sync.read(readFileSync(goldenFile));
   const currentImage = pngjs.PNG.sync.read(screenshot);
   if (goldenImage.width !== currentImage.width || goldenImage.height !== currentImage.height) {
-    //throw new Error('Images must have the same dimensions');
-    return {
-      screenshot,
-    };
+    throw new Error('Images must have the same dimensions');
   }
   const diff = new pngjs.PNG({
     width: goldenImage.width,

@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import pngjs from 'pngjs';
 
 import { DisposableElement } from './disposableElement';
 
@@ -22,4 +23,24 @@ export interface DialogOptions<T> {
 
 export interface OnScreenshot {
   (screenshot: Buffer): void;
+}
+
+export interface CompareScreenshotResult {
+  mismatchedPixels: number;
+  diff: pngjs.PNG;
+  screenshot: Buffer;
+}
+
+const availableTests = {
+  atrium: 'atrium',
+  churnzero: 'churnzero',
+  mixmax: 'mixmax',
+  contractbook: 'contractbook',
+  discern: 'discern',
+  revsure: 'revsure',
+};
+
+export interface TestSuite {
+  test: keyof typeof availableTests;
+  action?: string;
 }

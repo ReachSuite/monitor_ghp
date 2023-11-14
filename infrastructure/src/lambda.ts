@@ -11,6 +11,8 @@ import {
   LAMBDA_RUNTIME,
   LAMBDA_FUNCTION_NAME,
   LAMBDA_CHROME_LAMBDA_LAYER_NAME,
+  TESTS_TO_RUN,
+  LAMBDA_RUN_GOLDEN_SCREENSHOT_TEST,
 } from './config';
 
 export function createChromeLambdaLayer(
@@ -54,6 +56,8 @@ export function createTestsLambda({
         snsTopic: snsTopicArn,
         snsTopicScreenshot: snsTopicScreenshotArn,
         s3BucketName: s3BucketName,
+        testsToRun: TESTS_TO_RUN.join(','),
+        runGoldenScreenshotTest: LAMBDA_RUN_GOLDEN_SCREENSHOT_TEST,
       },
     },
   });

@@ -11,6 +11,7 @@
     "monitoring:install:layers": "cd infrastructure/layers/chrome/nodejs && npm ci",
     "monitoring:install:lambda": "sh install-lambda.sh",
     "monitoring:deploy:dev": "run-p monitoring:install:* && cd infrastructure && pulumi up --stack dev",
+    "monitoring:preview:dev": "cd infrastructure && pulumi preview --stack dev",
     "monitoring:destroy:dev": "cd infrastructure && pulumi destroy --stack dev",
     "postinstall": "pnpm build",
     "build": "pnpm recursive run build"
