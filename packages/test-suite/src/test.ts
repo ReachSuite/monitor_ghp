@@ -1,10 +1,10 @@
 import { Page } from '@playwright/test';
 
-import { CompareScreenshotResult } from './types';
+import { CompareScreenshotResult, TestSettings } from './types';
 import { compareScreenshots } from './utils';
 
 export default abstract class Test {
-  constructor(public label: string = '') {}
+  constructor(public settings: TestSettings) {}
   abstract e2e({ page }: { page: Page }): Promise<void>;
   async takeInitialGoldenScreenshot({ page }: { page: Page }): Promise<Buffer> {
     await this.navigateToGoldenScreenshotScenario({

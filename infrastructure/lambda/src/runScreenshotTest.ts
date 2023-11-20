@@ -73,7 +73,7 @@ export default async function runScreenshotTest({
     });
     await sns
       .publish({
-        Message: `Test screenshot failed for: ${suite.test}, scenario: ${testSuite.label}.
+        Message: `Test screenshot failed for: ${suite.test}, scenario: ${testSuite.settings.label}.
             Details: ${(e as any).message} \n
             Diff: ${diffSignedUrl}
             New screenshot: ${screenshotSignedUrl}

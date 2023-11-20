@@ -14,14 +14,11 @@ import {
 } from './utils';
 
 export default class ChurnzeroTestSuite extends Test {
-  constructor() {
-    super('ChurnZero');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '40cf8e63',
-      url: '**/#/app/renewalReports/7/report',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -85,8 +82,8 @@ export default class ChurnzeroTestSuite extends Test {
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '40cf8e63',
-      url: '**/#/app/renewalReports/7/report',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -104,7 +101,7 @@ export default class ChurnzeroTestSuite extends Test {
     return super.goldenScreenshot({
       page,
       threshold,
-      goldenFile: './screenshots/churnzero.png',
+      goldenFile: this.settings.goldenFile,
     });
   }
 }

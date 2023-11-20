@@ -47,7 +47,7 @@ export default async function runTest(suite: TestSuite) {
   // Inform test suite succeded.
   await sns
     .publish({
-      Message: `Test suite succeded: ${suite.test}, tested scenario: ${testSuite.label}`,
+      Message: `Test suite succeded: ${suite.test}, tested scenario: ${testSuite.settings.label}`,
       Subject: `\u2600 Test suite succeded: ${suite.test}`,
       TopicArn: snsTopicArn,
     })

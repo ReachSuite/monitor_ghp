@@ -8,10 +8,6 @@ import expectLetsTalk from './expectLetsTalk';
 import beforeEach from './beforeEach';
 
 export default class PhenomTextMessageTestSuite extends Test {
-  constructor() {
-    super('Selected option: Customer experience Through Text Messages');
-  }
-
   async e2e({ page }: { page: Page }): Promise<void> {
     await beforeEach({
       page,

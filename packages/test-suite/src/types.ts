@@ -44,3 +44,10 @@ export interface TestSuite {
   test: keyof typeof availableTests;
   action?: string;
 }
+
+export interface TestSettings {
+  experienceId: string;
+  url: string;
+  goldenFile: string;
+  label: string;
+}

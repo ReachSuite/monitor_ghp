@@ -1,6 +1,8 @@
 import { TestSuite } from '@reachsuite/test-suite';
 import { Context } from 'aws-lambda';
 
+const REQUIRED_ENVS = ['baseUrl', 'testTimeout', 'threshold', 'width', 'height', 'runGoldenScreenshotTest'];
+
 /**
  * Executes a function with a retry mechanism
  */
@@ -34,7 +36,6 @@ export async function withRetry(
 function getEnvironmentSetting<T>({
   setting,
   type = 'string',
-  required = true,
   defaultValue,
 }: {
   setting: string;
@@ -42,7 +43,7 @@ function getEnvironmentSetting<T>({
   required?: boolean;
   defaultValue?: number | boolean | string | undefined;
 }): T {
-  if (required && !defaultValue && !process.env[setting]) {
+  if (REQUIRED_ENVS.includes(setting) && !defaultValue && !process.env[setting]) {
     throw new Error(`Missing required value: ${setting}`);
   }
   switch (type) {
@@ -107,11 +108,6 @@ export function getTestSettings() {
     height,
     runGoldenScreenshotTest,
   };
-}
-
-export function getTestsToRun(): string[] {
-  const testsToRun = process.env.testsToRun || '';
-  return testsToRun.split(',');
 }
 
 export async function invokeTestLambda(test: string, lambda: AWS.Lambda, context: Context) {

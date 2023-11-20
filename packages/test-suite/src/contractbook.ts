@@ -13,14 +13,11 @@ import {
 import { CompareScreenshotResult, DialogType } from './types';
 
 export default class ContractbookTestSuite extends Test {
-  constructor() {
-    super('ContractBook');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '3a811a45',
-      url: '**/templates?language=all&sortBy=%21createdAt',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -89,8 +86,8 @@ export default class ContractbookTestSuite extends Test {
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '3a811a45',
-      url: '**/templates?language=all&sortBy=%21createdAt',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -112,7 +109,7 @@ export default class ContractbookTestSuite extends Test {
     return super.goldenScreenshot({
       page,
       threshold,
-      goldenFile: './screenshots/contractbook.png',
+      goldenFile: this.settings.goldenFile,
     });
   }
 }

@@ -16,14 +16,11 @@ import {
 } from './utils';
 
 export default class BiglittleTestSuite extends Test {
-  constructor() {
-    super('BigLittle');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '1113e2ae',
-      url: '**/features/revenue-leaks/reports/dashboard',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectHeading(page, "Welcome to BigLittle's Revenup!👋");
@@ -75,14 +72,14 @@ export default class BiglittleTestSuite extends Test {
     await expectUrl(page, 'https://meetings-eu1.hubspot.com/ashok1');
   }
   goldenScreenshot({ page, threshold }: { page: Page; threshold: number }): Promise<CompareScreenshotResult> {
-    return super.goldenScreenshot({ page, threshold, goldenFile: './screenshots/biglittle' });
+    return super.goldenScreenshot({ page, threshold, goldenFile: this.settings.goldenFile });
   }
 
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: '1113e2ae',
-      url: '**/features/revenue-leaks/reports/dashboard',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectHeading(page, "Welcome to BigLittle's Revenup!👋");

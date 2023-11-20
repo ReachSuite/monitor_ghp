@@ -13,14 +13,11 @@ import {
 import { CompareScreenshotResult, DialogType } from './types';
 
 export default class MixmaxTestSuite extends Test {
-  constructor() {
-    super('MixMax');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'cd2f7d95',
-      url: '**/dashboard/sequences/v2/64ea175d0a52572c546d8875/stages',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -98,8 +95,8 @@ export default class MixmaxTestSuite extends Test {
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'cd2f7d95',
-      url: '**/dashboard/sequences/v2/64ea175d0a52572c546d8875/stages',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -121,7 +118,7 @@ export default class MixmaxTestSuite extends Test {
     return super.goldenScreenshot({
       page,
       threshold,
-      goldenFile: './screenshots/mixmax.png',
+      goldenFile: this.settings.goldenFile,
     });
   }
 }

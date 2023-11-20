@@ -16,14 +16,11 @@ import {
 import { CompareScreenshotResult, DialogType } from './types';
 
 export default class DiscernTestsuite extends Test {
-  constructor() {
-    super('discern');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'bf96aba5',
-      url: '**/kpi-retrospectives',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectHeading(page, 'Welcome to Discern Operational KPIs!');
@@ -129,8 +126,8 @@ export default class DiscernTestsuite extends Test {
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'bf96aba5',
-      url: '**/kpi-retrospectives',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectHeading(page, 'Welcome to Discern Operational KPIs!');
@@ -152,7 +149,7 @@ export default class DiscernTestsuite extends Test {
     return super.goldenScreenshot({
       page,
       threshold,
-      goldenFile: './screenshots/discern.png',
+      goldenFile: this.settings.goldenFile,
     });
   }
 }

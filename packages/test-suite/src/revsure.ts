@@ -14,14 +14,11 @@ import {
 import { CompareScreenshotResult } from './types';
 
 export default class RevsureTestSuite extends Test {
-  constructor() {
-    super('Revsure');
-  }
   async e2e({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'a49d0ba5',
-      url: '**/app/sales-pipeline-readiness/unified-funnel-and-pipeline?savedview=DEFAULT&tab=funnel',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -151,8 +148,8 @@ export default class RevsureTestSuite extends Test {
   async navigateToGoldenScreenshotScenario({ page }: { page: Page }): Promise<void> {
     const response = await navigateToExperience({
       page,
-      experienceId: 'a49d0ba5',
-      url: '**/app/sales-pipeline-readiness/unified-funnel-and-pipeline?savedview=DEFAULT&tab=funnel',
+      experienceId: this.settings.experienceId,
+      url: this.settings.url,
     });
     expectHeaders(response);
     await expectModalDialog(page);
@@ -177,7 +174,7 @@ export default class RevsureTestSuite extends Test {
     return super.goldenScreenshot({
       page,
       threshold,
-      goldenFile: './screenshots/revsure.png',
+      goldenFile: this.settings.goldenFile,
     });
   }
 }
