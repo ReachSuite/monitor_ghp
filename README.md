@@ -89,3 +89,36 @@ pnpm exec playwright test --grep @biglittle --project=firefox
 ```sh
 pnpm exec playwright show-report
 ```
+
+# Monitoring Infrastructure
+
+This project uses Pulumi, ensure you have an account created and your AWS credentials properly configured.
+Read more about getting started with Pulumi and AWS [here](https://www.pulumi.com/docs/clouds/aws/get-started/begin/)
+
+Install pulumi cli
+
+```sh
+brew install pulumi/tap/pulumi
+```
+
+Check if Pulumi is properly installed:
+
+```sh
+pulumi version
+```
+
+## Deploy to development stack
+
+The following command will install all required dependencies and deploy all the required infrastructure to AWS:
+
+```sh
+pnpm run monitoring:deploy:dev
+```
+
+## Destroy development stack
+
+If you want / need to recreate the infrastructure, run:
+
+```sh
+pnpm run monitoring:destroy:dev
+```

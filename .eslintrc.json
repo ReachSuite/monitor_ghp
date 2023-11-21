@@ -24,7 +24,7 @@
     "eqeqeq": "warn",
     "no-throw-literal": "warn",
     "quotes": ["error", "single", { "avoidEscape": true }],
-    "max-len": [2, 120]
+    "max-len": [2, 130]
   },
   "ignorePatterns": ["**/*.d.ts"],
   "settings": {

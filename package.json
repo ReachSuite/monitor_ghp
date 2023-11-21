@@ -2,16 +2,22 @@
   "name": "monitor_ghp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "format": "pnpm exec prettier . --write",
     "prepare": "husky install && pnpm exec playwright install",
     "lint": "eslint \"**/*.ts\"",
     "test:dev": "pnpm exec playwright test --project=chromium",
-    "test:local": "PLAYWRIGHT_BASE_URL=https://rs.test pnpm exec playwright test --project=chromium"
+    "test:local": "PLAYWRIGHT_BASE_URL=https://rs.test pnpm exec playwright test --project=chromium",
+    "monitoring:install:layers": "cd infrastructure/layers/chrome/nodejs && npm ci",
+    "monitoring:install:lambda": "sh install-lambda.sh",
+    "monitoring:deploy:dev": "run-p monitoring:install:* && cd infrastructure && pulumi up --stack dev",
+    "monitoring:preview:dev": "cd infrastructure && pulumi preview --stack dev",
+    "monitoring:destroy:dev": "cd infrastructure && pulumi destroy --stack dev",
+    "postinstall": "pnpm build",
+    "build": "pnpm recursive run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ruben Restrepo <contact@bencho.dev>",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.38.0",
@@ -27,7 +33,8 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
-    "prettier": "2.7.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "3.0.0",
     "typescript": "^5.2.2"
   },
   "engines": {
@@ -36,5 +43,11 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@reachsuite/test-suite": "workspace:*"
+  },
+  "volta": {
+    "node": "18.12.1"
   }
 }

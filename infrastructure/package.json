@@ -1,0 +1,21 @@
+{
+  "name": "@reachsuite/iac",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IaC definitions for test suite monitoring",
+  "keywords": [],
+  "main": "src/index.ts",
+  "author": "Ruben Restrepo <contact@bencho.dev>",
+  "license": "ISC",
+  "engines": {
+    "node": "=18.12.1",
+    "pnpm": "=7.26.0"
+  },
+  "dependencies": {
+    "@pulumi/aws": "^6.6.1",
+    "@pulumi/pulumi": "^3.91.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

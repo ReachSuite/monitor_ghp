@@ -1,6 +1,10 @@
-import { Page, expect, Response, Locator } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
-import { DialogOptions, DialogType, Keyboard } from './types';
+import { Page, expect, Response, Locator } from '@playwright/test';
+import pixelmatch from 'pixelmatch';
+import pngjs from 'pngjs';
+
+import { CompareScreenshotResult, DialogOptions, DialogType, Keyboard } from './types';
 import { DisposableElement } from './disposableElement';
 
 export const navigateToExperience = async ({
@@ -123,3 +127,36 @@ export class SelfClosable implements DisposableElement<void | Error> {
 export const buildUrl = (basePath: string, params: string[]) => {
   return `${basePath}/?${params.join('&')}`;
 };
+
+export async function compareScreenshots({
+  page,
+  goldenFile,
+  threshold,
+}: {
+  page: Page;
+  goldenFile: string;
+  threshold: number | undefined;
+}): Promise<CompareScreenshotResult> {
+  const screenshot = await page.screenshot();
+  const goldenImage = pngjs.PNG.sync.read(readFileSync(goldenFile));
+  const currentImage = pngjs.PNG.sync.read(screenshot);
+  if (goldenImage.width !== currentImage.width || goldenImage.height !== currentImage.height) {
+    throw new Error('Images must have the same dimensions');
+  }
+  const diff = new pngjs.PNG({
+    width: goldenImage.width,
+    height: goldenImage.height,
+  });
+
+  // Compare the images using pixelmatch
+  const mismatchedPixels = pixelmatch(
+    goldenImage.data,
+    currentImage.data,
+    diff.data,
+    goldenImage.width,
+    goldenImage.height,
+    { threshold },
+  );
+
+  return { mismatchedPixels, diff, screenshot };
+}

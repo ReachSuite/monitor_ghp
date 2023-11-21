@@ -1,0 +1,3 @@
+name: reachsuite-tests-monitor
+runtime: nodejs
+description: Deploy ReachSuite serverless tests monitor on AWS
