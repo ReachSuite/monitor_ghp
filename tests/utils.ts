@@ -73,9 +73,7 @@ export const expectDialog = async <T>({ page, text, closeMethod, type, locator }
   await expect(elementReference).toBeVisible();
   if (!closeMethod) {
     const rsSelector = await elementReference.evaluate(
-      (e) =>
-        //@ts-ignore
-        e.closest('div[role=tooltip]')?.dataset?.rsSelector,
+      (e) => (e.closest('div[role=tooltip]') as HTMLElement)?.dataset?.rsSelector,
     );
 
     const tooltip = page.locator(`div[data-rs-selector="${rsSelector}"]`);

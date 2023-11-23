@@ -32,7 +32,7 @@ export const biglittle = new BiglittleTestSuite({
 });
 export const churnzero = new ChurnzeroTestSuite({
   label: 'ChurnZero',
-  experienceId: '40cf8e63',
+  experienceId: '24677f3f',
   goldenFile: './screenshots/churnzero.png',
   url: '**/#/app/renewalReports/7/report',
 });
