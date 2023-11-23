@@ -76,7 +76,15 @@ export const expectDialog = async <T>({ page, text, closeMethod, type, locator }
 
   await expect(elementReference).toBeVisible();
   if (!closeMethod) {
-    return new BackdropClosable().dispose(page);
+    const rsSelector = await elementReference.evaluate(
+      (e) =>
+        //@ts-ignore
+        e.closest('div[role=tooltip]')?.dataset?.rsSelector,
+    );
+
+    const tooltip = page.locator(`div[data-rs-selector="${rsSelector}"]`);
+
+    return tooltip.click();
   }
   return closeMethod.dispose(page, elementReference);
 };
