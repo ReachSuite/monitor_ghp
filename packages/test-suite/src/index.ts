@@ -1,6 +1,7 @@
 import AtriumSuite from './atrium';
 import BiglittleTestSuite from './biglittle';
 import ChurnzeroTestSuite from './churnzero';
+import AutoClickTestSuite from './autoclick';
 import ContractbookTestSuite from './contractbook';
 import DiscernTestsuite from './discern';
 import MixmaxTestSuite from './mixmax';
@@ -71,4 +72,10 @@ export const revsure = new RevsureTestSuite({
   experienceId: 'a49d0ba5',
   goldenFile: './screenshots/revsure.png',
   url: '**/app/sales-pipeline-readiness/unified-funnel-and-pipeline?savedview=DEFAULT&tab=funnel',
+});
+export const clickAnchorChurnzero = new AutoClickTestSuite({
+  label: 'Autoclick',
+  experienceId: '570df7f2',
+  goldenFile: './screenshots/autoclick.png',
+  url: '**/v1/debug/fs/placement.html',
 });

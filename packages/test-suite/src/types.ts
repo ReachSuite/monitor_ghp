@@ -19,6 +19,7 @@ export interface DialogOptions<T> {
   timeout?: number;
   type?: DialogType;
   locator?: string;
+  hasBackdrop?: boolean;
 }
 
 export interface OnScreenshot {

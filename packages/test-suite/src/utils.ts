@@ -57,7 +57,7 @@ export const expectStepDialog = async (page: Page, text: string | RegExp, label 
   return page.getByLabel(label).click();
 };
 
-export const expectDialog = async <T>({ page, text, closeMethod, type, locator }: DialogOptions<T>) => {
+export const expectDialog = async <T>({ page, text, closeMethod, type, locator, hasBackdrop }: DialogOptions<T>) => {
   const elementReference =
     type === DialogType.Default
       ? page.getByText(text)
@@ -75,18 +75,20 @@ export const expectDialog = async <T>({ page, text, closeMethod, type, locator }
           .getByRole('paragraph');
 
   await expect(elementReference).toBeVisible();
-  if (!closeMethod) {
-    const rsSelector = await elementReference.evaluate(
-      (e) =>
-        //@ts-ignore
-        e.closest('div[role=tooltip]')?.dataset?.rsSelector,
-    );
-
-    const tooltip = page.locator(`div[data-rs-selector="${rsSelector}"]`);
-
-    return tooltip.click();
+  if (closeMethod) {
+    return closeMethod.dispose(page, elementReference);
   }
-  return closeMethod.dispose(page, elementReference);
+
+  if (hasBackdrop) {
+    return new BackdropClosable().dispose(page);
+  }
+
+  const rsSelector = await elementReference.evaluate(
+    (e) => (e.closest('div[role=tooltip]') as HTMLElement)?.dataset?.rsSelector,
+  );
+
+  const tooltip = page.locator(`div[data-rs-selector="${rsSelector}"]`);
+  return tooltip.click();
 };
 
 export const expectText = async (page: Page, text: string) => {
