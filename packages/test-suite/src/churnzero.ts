@@ -22,7 +22,7 @@ export default class ChurnzeroTestSuite extends Test {
     });
     expectHeaders(response);
     await expectModalDialog(page);
-    await expectHeading(page, "Welcome to ChurnZero's Command Center!");
+    await expectHeading(page, "Welcome to ChurnZero's Renewal and Forecast Hub!");
 
     await expectText(
       page,

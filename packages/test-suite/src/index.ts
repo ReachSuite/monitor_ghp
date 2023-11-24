@@ -32,7 +32,7 @@ export const biglittle = new BiglittleTestSuite({
 });
 export const churnzero = new ChurnzeroTestSuite({
   label: 'ChurnZero',
-  experienceId: '40cf8e63',
+  experienceId: '24677f3f',
   goldenFile: './screenshots/churnzero.png',
   url: '**/#/app/renewalReports/7/report',
 });
@@ -50,7 +50,7 @@ export const discern = new DiscernTestsuite({
 });
 export const mixmax = new MixmaxTestSuite({
   label: 'MixMax',
-  experienceId: 'cd2f7d95',
+  experienceId: 'aca54cdc',
   goldenFile: './screenshots/mixmax.png',
   url: '**/dashboard/sequences/v2/64ea175d0a52572c546d8875/stages',
 });
